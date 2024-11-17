@@ -1,17 +1,17 @@
 using JobFinder.Domain.Common.Models;
 
-namespace JobFinder.Domain.User.ValueObjects;
+namespace JobFinder.Domain.Skill.ValueObjects;
 
-public sealed class ResumeId : ValueObject
+public sealed class SkillId : ValueObject
 {
-  public Guid Value { get; }
+  public Guid Value { get; set; }
 
-  private ResumeId(Guid value)
+  private SkillId(Guid value)
   {
     Value = value;
   }
 
-  public static ResumeId CreateUnique()
+  public static SkillId CreateUnique()
   {
     return new(Guid.NewGuid());
   }

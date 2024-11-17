@@ -1,12 +1,13 @@
 using JobFinder.Domain.Common.Models;
-using JobFinder.Domain.User.ValueObjects;
+using JobFinder.Domain.Resume.ValueObjects;
+using JobFinder.Domain.Skill.ValueObjects;
 
-namespace JobFinder.Domain.User.Entities;
+namespace JobFinder.Domain.Resume;
 
-public sealed class Resume : Entity<ResumeId>
+public sealed class Resume : AggregateRoot<ResumeId>
 {
 
-  private Resume(ResumeId Id, string Email, string PhoneNumber, string City, List<string> Skills) : base(Id)
+  private Resume(ResumeId Id, string Email, string PhoneNumber, string City, List<SkillId> Skills) : base(Id)
   {
     this.Email = Email;
     this.PhoneNumber = PhoneNumber;
@@ -17,7 +18,7 @@ public sealed class Resume : Entity<ResumeId>
   public static Resume Create(string Email,
       string PhoneNumber,
       string City,
-      List<string> Skills)
+      List<SkillId> Skills)
   {
     return new(ResumeId.CreateUnique(),
         Email,
@@ -29,6 +30,6 @@ public sealed class Resume : Entity<ResumeId>
   public string Email { get; }
   public string PhoneNumber { get; }
   public string City { get; }
-  private readonly List<string> _skills = new();
-  public IReadOnlyList<string> Skills => _skills.AsReadOnly();
+  private readonly List<SkillId> _skills = new();
+  public IReadOnlyList<SkillId> Skills => _skills.AsReadOnly();
 }
