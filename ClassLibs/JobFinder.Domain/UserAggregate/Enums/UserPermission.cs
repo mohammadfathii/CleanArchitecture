@@ -1,4 +1,4 @@
-namespace JobFinder.Domain.User.Enums;
+namespace JobFinder.Domain.UserAggregate.Enums;
 
 public enum UserPermission
 {

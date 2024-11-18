@@ -1,6 +1,6 @@
-using JobFinder.Domain.Common.Models;
+namespace JobFinder.Domain.SkillAggregate.ValueObjects;
 
-namespace JobFinder.Domain.Skill.ValueObjects;
+using JobFinder.Domain.Common.Models;
 
 public sealed class SkillId : ValueObject
 {

@@ -1,6 +1,6 @@
-using JobFinder.Domain.Common.Models;
+namespace JobFinder.Domain.UserAggregate.ValueObjects;
 
-namespace JobFinder.Domain.User.ValueObjects;
+using JobFinder.Domain.Common.Models;
 
 public sealed class UserId : ValueObject
 {

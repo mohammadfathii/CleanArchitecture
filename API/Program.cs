@@ -20,6 +20,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapSwagger();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

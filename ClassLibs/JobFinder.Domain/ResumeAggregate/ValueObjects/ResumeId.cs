@@ -1,6 +1,6 @@
-using JobFinder.Domain.Common.Models;
+namespace JobFinder.Domain.ResumeAggregate.ValueObjects;
 
-namespace JobFinder.Domain.Resume.ValueObjects;
+using JobFinder.Domain.Common.Models;
 
 public sealed class ResumeId : ValueObject
 {

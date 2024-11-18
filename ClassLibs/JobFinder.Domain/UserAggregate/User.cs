@@ -1,10 +1,11 @@
+namespace JobFinder.Domain.UserAggregate;
+
 using System.ComponentModel.DataAnnotations.Schema;
 using JobFinder.Domain.Common.Models;
-using JobFinder.Domain.User.Enums;
-using JobFinder.Domain.User.ValueObjects;
-using JobFinder.Domain.Resume.ValueObjects;
-
-namespace JobFinder.Domain.User;
+using JobFinder.Domain.UserAggregate.Enums;
+using JobFinder.Domain.UserAggregate.ValueObjects;
+using JobFinder.Domain.ResumeAggregate.ValueObjects;
+using JobFinder.Domain.ResumeAggregate;
 
 public sealed class User : AggregateRoot<UserId>
 {
@@ -42,5 +43,5 @@ public sealed class User : AggregateRoot<UserId>
     public UserPermission Permission { get; }
     public ResumeId ResumeId { get; }
     [ForeignKey(nameof(ResumeId))]
-    public Resume.Resume Resume { get; } = null!;
+    public Resume Resume { get; } = null!;
 }

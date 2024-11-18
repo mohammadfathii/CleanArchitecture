@@ -1,18 +1,46 @@
+namespace JobFinder.Infrastructure;
+
+using System.Text;
+using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Common.Repositories;
 using JobFinder.Infrastructure.Common.Repositories;
+using JobFinder.Infrastructure.Common.Services;
 using JobFinder.Infrastructure.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace JobFinder.Infrastructure;
+using Microsoft.IdentityModel.Tokens;
 
 public static class DependencyInjection
 {
-  public static IServiceCollection AddInfrastructure(this IServiceCollection services){
+  public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+  {
     var connectionString = "Server=.;DataBase=JobFinder;Trsuted_Connection=True;TrustedServerCertificated=True";
 
     services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
-    services.AddScoped<IUserRepository,UserRepository>();
+    services.AddScoped<IUserRepository, UserRepository>();
+    services.AddScoped<ITokenGenerator,TokenGenerator>();
+
+    services.AddAuthSettings();
+
+    return services;
+  }
+
+  public static IServiceCollection AddAuthSettings(this IServiceCollection services)
+  {
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+            options.TokenValidationParameters = new TokenValidationParameters()
+            {
+              ValidateIssuer = true,
+              ValidateAudience = true,
+              ValidateLifetime = true,
+              ValidateIssuerSigningKey = true,
+              ValidIssuer = JwtSettings.Issuer,
+              ValidAudience = JwtSettings.Issuer,
+              IssuerSigningKey =
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.SecretKey))
+            });
 
     return services;
   }

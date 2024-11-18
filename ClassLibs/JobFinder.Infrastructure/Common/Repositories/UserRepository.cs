@@ -1,7 +1,7 @@
-using JobFinder.Application.Common.Repositories;
-using JobFinder.Domain.User;
-
 namespace JobFinder.Infrastructure.Common.Repositories;
+
+using JobFinder.Application.Common.Repositories;
+using JobFinder.Domain.UserAggregate;
 
 public class UserRepository : IUserRepository
 {

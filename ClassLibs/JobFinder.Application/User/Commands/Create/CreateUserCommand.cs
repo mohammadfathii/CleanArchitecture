@@ -1,6 +1,7 @@
-using FluentResults;
-using MediatR;
-
 namespace JobFinder.Application.User.Commands.Create;
 
-public record CreateUserCommand (CreateUserCommandDTO User) : IRequest<Result<Domain.User.User>>;
+using FluentResults;
+using JobFinder.Domain.UserAggregate;
+using MediatR;
+
+public record CreateUserCommand(CreateUserCommandDTO User) : IRequest<Result<User>>;

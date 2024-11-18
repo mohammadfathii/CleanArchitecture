@@ -1,8 +1,9 @@
-using JobFinder.Domain.Common.Models;
-using JobFinder.Domain.Resume.ValueObjects;
-using JobFinder.Domain.Skill.ValueObjects;
+namespace JobFinder.Domain.ResumeAggregate;
 
-namespace JobFinder.Domain.Resume;
+using JobFinder.Domain.Common.Models;
+using JobFinder.Domain.ResumeAggregate.ValueObjects;
+using JobFinder.Domain.SkillAggregate.ValueObjects;
+
 
 public sealed class Resume : AggregateRoot<ResumeId>
 {

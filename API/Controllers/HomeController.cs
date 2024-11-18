@@ -1,21 +1,26 @@
+namespace JobFinder.API.Controllers;
+
 using JobFinder.Application.Common.Errors;
+using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.User.Commands.Create;
-using JobFinder.Domain.Resume.ValueObjects;
-using JobFinder.Domain.User.Enums;
+using JobFinder.Domain.ResumeAggregate.ValueObjects;
+using JobFinder.Domain.UserAggregate.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JobFinder.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class HomeController : ControllerBase
 {
   private ISender _sender;
+  private ITokenGenerator _tokenGenerator;
 
-  public HomeController(ISender sender)
+  public HomeController(ISender sender, ITokenGenerator tokenGenerator)
   {
     _sender = sender;
+    _tokenGenerator = tokenGenerator;
   }
 
   [HttpGet("/Home/Get")]
@@ -39,4 +44,21 @@ public class HomeController : ControllerBase
 
     return Ok(result.Value);
   }
+  [Authorize]
+  [HttpGet("/Home/Authorize")]
+  public async Task<string> NeedAuthorize()
+  {
+    return "hello";
+  }
+
+  [HttpGet("/Home/Login")]
+  public async Task<string> Authorize()
+  {
+    var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad asdsafathi", "edovosdasdsas", "mohaasdsadammad@gmail.com", "12jhvdasdsabhv34", UserPermission.Admin, ResumeId.CreateUnique()));
+
+    var result = await _sender.Send(command);
+    var token = _tokenGenerator.GenerateJWTToken(result.Value);
+    return token;
+  }
+
 }

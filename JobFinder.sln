@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -14,8 +13,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobFinder.Application", "ClassLibs\JobFinder.Application\JobFinder.Application.csproj", "{18E05ADD-587B-4D1F-822A-DCA2B4AAD745}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobFinder.Infrastructure", "ClassLibs\JobFinder.Infrastructure\JobFinder.Infrastructure.csproj", "{3F1774E1-F1D3-401B-ABD8-4F99220C297B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobFinder.Shares", "ClassLibs\JobFinder.Shares\JobFinder.Shares.csproj", "{53CA00A8-0D5C-415A-8798-C14DC049D120}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,15 +43,10 @@ Global
 		{3F1774E1-F1D3-401B-ABD8-4F99220C297B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F1774E1-F1D3-401B-ABD8-4F99220C297B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F1774E1-F1D3-401B-ABD8-4F99220C297B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53CA00A8-0D5C-415A-8798-C14DC049D120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53CA00A8-0D5C-415A-8798-C14DC049D120}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53CA00A8-0D5C-415A-8798-C14DC049D120}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53CA00A8-0D5C-415A-8798-C14DC049D120}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4D1F654A-9B57-419F-8E4E-5D7A319669E6} = {D42D9A96-4BCA-4E63-ACE3-8D397D4E1AA6}
 		{18E05ADD-587B-4D1F-822A-DCA2B4AAD745} = {D42D9A96-4BCA-4E63-ACE3-8D397D4E1AA6}
 		{3F1774E1-F1D3-401B-ABD8-4F99220C297B} = {D42D9A96-4BCA-4E63-ACE3-8D397D4E1AA6}
-		{53CA00A8-0D5C-415A-8798-C14DC049D120} = {D42D9A96-4BCA-4E63-ACE3-8D397D4E1AA6}
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,8 @@
-using JobFinder.Domain.User;
-
 namespace JobFinder.Application.Common.Repositories;
+
+using JobFinder.Domain.UserAggregate;
 
 public interface IUserRepository
 {
-  Task<Domain.User.User> Create(Domain.User.User user);
+  Task<User> Create(User user);
 }

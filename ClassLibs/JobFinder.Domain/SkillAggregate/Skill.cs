@@ -1,8 +1,9 @@
-using JobFinder.Domain.Common.Models;
-using JobFinder.Domain.Skill.Enums;
-using JobFinder.Domain.Skill.ValueObjects;
+namespace JobFinder.Domain.SkillAggregate;
 
-namespace JobFinder.Domain.Skill;
+using JobFinder.Domain.Common.Models;
+using JobFinder.Domain.SkillAggregate.Enums;
+using JobFinder.Domain.SkillAggregate.ValueObjects;
+
 
 public sealed class Skill : AggregateRoot<SkillId>
 {

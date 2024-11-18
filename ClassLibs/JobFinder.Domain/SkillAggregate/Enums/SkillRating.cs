@@ -1,4 +1,4 @@
-namespace JobFinder.Domain.Skill.Enums;
+namespace JobFinder.Domain.SkillAggregate.Enums;
 
 public enum SkillRating
 {

@@ -97,3 +97,4 @@ C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\FluentResults.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

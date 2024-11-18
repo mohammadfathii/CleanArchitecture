@@ -1,5 +1,5 @@
-using JobFinder.Domain.Resume.ValueObjects;
-using JobFinder.Domain.User.Enums;
+using JobFinder.Domain.ResumeAggregate.ValueObjects;
+using JobFinder.Domain.UserAggregate.Enums;
 
 namespace JobFinder.Application.User.Commands.Create;
 
