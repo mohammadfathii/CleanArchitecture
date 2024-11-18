@@ -1,0 +1,11 @@
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\bin\Debug\net8.0\JobFinder.Domain.deps.json
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\bin\Debug\net8.0\JobFinder.Domain.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\bin\Debug\net8.0\JobFinder.Domain.pdb
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.AssemblyInfoInputs.cache
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.AssemblyInfo.cs
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\refint\JobFinder.Domain.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.pdb
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\ref\JobFinder.Domain.dll
