@@ -1,14 +1,14 @@
 namespace JobFinder.API.Controllers;
 
-using JobFinder.Application.Common.Errors;
-using JobFinder.Application.Common.Interfaces;
-using JobFinder.Application.User.Commands.Create;
 using JobFinder.Domain.ResumeAggregate.ValueObjects;
+using JobFinder.Application.User.Queries.GetUser;
+using JobFinder.Application.User.Commands.Create;
+using JobFinder.Application.Common.Interfaces;
 using JobFinder.Domain.UserAggregate.Enums;
-using MediatR;
+using JobFinder.Application.Common.Errors;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using MediatR;
 
 [ApiController]
 [Route("[controller]")]
@@ -16,6 +16,8 @@ public class HomeController : ControllerBase
 {
   private ISender _sender;
   private ITokenGenerator _tokenGenerator;
+
+  private static string userId = "";
 
   public HomeController(ISender sender, ITokenGenerator tokenGenerator)
   {
@@ -45,20 +47,33 @@ public class HomeController : ControllerBase
     return Ok(result.Value);
   }
   [Authorize]
-  [HttpGet("/Home/Authorize")]
+  [HttpGet("/Authorize")]
   public async Task<string> NeedAuthorize()
   {
     return "hello";
   }
 
-  [HttpGet("/Home/Login")]
-  public async Task<string> Authorize()
+  [HttpGet("/Register")]
+  public async Task<string> Register()
   {
     var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad asdsafathi", "edovosdasdsas", "mohaasdsadammad@gmail.com", "12jhvdasdsabhv34", UserPermission.Admin, ResumeId.CreateUnique()));
 
     var result = await _sender.Send(command);
-    var token = _tokenGenerator.GenerateJWTToken(result.Value);
-    return token;
+    userId = result.Value.Id.Value.ToString();
+    return userId;
+  }
+
+  [HttpGet("/Login")]
+  public async Task<IActionResult> Login()
+  {
+    var query = new GetUserQuery(userId);
+    var user = await _sender.Send(query);
+    if (user is null)
+    {
+      return Problem(statusCode: 404, title: "user not founded !");
+    }
+    var token = _tokenGenerator.GenerateJWTToken(user);
+    return Ok(token);
   }
 
 }

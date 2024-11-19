@@ -5,4 +5,5 @@ using JobFinder.Domain.UserAggregate;
 public interface IUserRepository
 {
   Task<User> Create(User user);
+  Task<User> GetUser(string userId);
 }
