@@ -13,7 +13,11 @@ public sealed class ResumeId : ValueObject
 
   public static ResumeId CreateUnique()
   {
-    return new(Guid.NewGuid());
+    return new ResumeId(Guid.NewGuid());
+  }
+
+  public static ResumeId Create(Guid value){
+    return new ResumeId(value);
   }
 
   public override IEnumerable<object> GetEqualityComponents()

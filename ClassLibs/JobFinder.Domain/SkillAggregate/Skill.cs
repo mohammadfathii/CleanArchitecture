@@ -12,20 +12,27 @@ public sealed class Skill : AggregateRoot<SkillId>
         string SkillName,
         SkillRating SkillRating) : base(Id)
     {
-      this.SkillName = SkillName;
-      this.SkillRating = SkillRating;
+        this.SkillName = SkillName;
+        this.SkillRating = SkillRating;
     }
 
     public static Skill Create(string SkillName,
         SkillRating SkillRating)
     {
-      return new(
-          SkillId.CreateUnique(),
-          SkillName,
-          SkillRating);
+        return new(
+            SkillId.CreateUnique(),
+            SkillName,
+            SkillRating);
     }
 
-    public string SkillName { get; }
-    public SkillRating SkillRating { get; }
+    public string SkillName { get; private set; }
+    public SkillRating SkillRating { get; private set; }
+
+      #pragma warning disable CS8618
+  private Skill(){
+
+  }
+  #pragma warning restore CS8618
+
 
 }

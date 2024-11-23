@@ -50,6 +50,7 @@ public class HomeController : ControllerBase
   [HttpGet("/Authorize")]
   public async Task<string> NeedAuthorize()
   {
+    await Task.CompletedTask;
     return "hello";
   }
 

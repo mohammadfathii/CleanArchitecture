@@ -24,7 +24,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Resul
             request.User.Email,
             request.User.Password,
             UserPermission.Admin,
-            ResumeId.CreateUnique()));
+            new List<Domain.ResumeAggregate.Resume>()));
         return user;
         // return Result.Fail<User>(new[]{
         //     "null result"

@@ -5,7 +5,7 @@ using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Common.Repositories;
 using JobFinder.Infrastructure.Common.Repositories;
 using JobFinder.Infrastructure.Common.Services;
-using JobFinder.Infrastructure.Data;
+using JobFinder.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,9 +15,9 @@ public static class DependencyInjection
 {
   public static IServiceCollection AddInfrastructure(this IServiceCollection services)
   {
-    var connectionString = "Server=.;DataBase=JobFinder;Trsuted_Connection=True;TrustedServerCertificated=True";
+    var connectionString = "Server=localhost;DataBase=JobFinderCADDD;Trusted_Connection=True;TrustServerCertificate=True";
 
-    services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+    services.AddDbContext<JobFinderDbContext>(options => options.UseSqlServer(connectionString));
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<ITokenGenerator,TokenGenerator>();
 

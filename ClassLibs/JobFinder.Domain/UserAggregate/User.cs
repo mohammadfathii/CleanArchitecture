@@ -9,14 +9,14 @@ using JobFinder.Domain.ResumeAggregate;
 
 public sealed class User : AggregateRoot<UserId>
 {
-    private User(UserId Id, string FullName, string UserName, string Email, string Password, UserPermission Permission,ResumeId resumeId) : base(Id)
+    private User(UserId Id, string FullName, string UserName, string Email, string Password, UserPermission Permission, List<Resume> Resumes) : base(Id)
     {
         this.FullName = FullName;
         this.UserName = UserName;
         this.Email = Email;
         this.Password = Password;
         this.Permission = Permission;
-        this.ResumeId = resumeId;
+        this._resumes = Resumes;
     }
 
     public static User Create(
@@ -25,23 +25,29 @@ public sealed class User : AggregateRoot<UserId>
         string Email,
         string Password,
         UserPermission Permission,
-        ResumeId resumeId)
+        List<Resume> Resumes)
     {
         return new(UserId.CreateUnique(),
             FullName,
             UserName,
             Email,
             Password,
-            Permission,resumeId);
+            Permission, Resumes);
     }
 
 
-    public string FullName { get; }
-    public string UserName { get; }
-    public string Email { get; }
-    public string Password { get; }
-    public UserPermission Permission { get; }
-    public ResumeId ResumeId { get; }
-    [ForeignKey(nameof(ResumeId))]
-    public Resume Resume { get; } = null!;
+    public string FullName { get; private set; }
+    public string UserName { get; private set; }
+    public string Email { get; private set; }
+    public string Password { get; private set; }
+    public UserPermission Permission { get; private set; }
+    private readonly List<Resume> _resumes;
+    public IReadOnlyList<Resume> Resumes => _resumes.AsReadOnly();
+#pragma warning disable CS8618
+    private User()
+    {
+
+    }
+#pragma warning restore CS8618
+
 }

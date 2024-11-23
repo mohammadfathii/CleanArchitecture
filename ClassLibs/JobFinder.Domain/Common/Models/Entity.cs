@@ -10,6 +10,7 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
         this.Id = Id;
     }
 
+
     public override bool Equals(object? obj)
     {
         return obj is Entity<TId> entity && this.Id.Equals(entity.Id);
@@ -20,12 +21,14 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
         return Equals((object?)other);
     }
 
-    public static bool operator == (Entity<TId> left , Entity<TId> right){
-        return Equals(left,right);
+    public static bool operator ==(Entity<TId> left, Entity<TId> right)
+    {
+        return Equals(left, right);
     }
 
-    public static bool operator != (Entity<TId> left , Entity<TId> right){
-        return Equals(left,right);
+    public static bool operator !=(Entity<TId> left, Entity<TId> right)
+    {
+        return Equals(left, right);
     }
 
     public override int GetHashCode()
@@ -33,4 +36,10 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
         return this.Id.GetHashCode();
     }
 
+#pragma warning disable CS8618
+    protected Entity()
+    {
+
+    }
+#pragma warning restore CS8618
 }
