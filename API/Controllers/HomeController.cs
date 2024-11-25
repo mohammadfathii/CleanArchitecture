@@ -27,11 +27,13 @@ public class HomeController : ControllerBase
   [HttpGet("/Home/Get")]
   public async Task<IActionResult> Home()
   {
-    var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad fathi", "edovoss", "mohammad@gmail.com", "12jhvbhv34", UserPermission.Admin));
+    var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad fathi", "ss", "mohammadail.com", "12jhvbhv34", UserPermission.Admin));
     // var command = new TestUserCommand("Masdaso");
 
     var result = await _sender.Send(command);
     var errors = result.Errors;
+
+    throw new Exception("test exception");
 
     // handling errors
     if (!result.IsSuccess && errors[0] is ValidationError)

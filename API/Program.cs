@@ -1,4 +1,5 @@
 using JobFinder.API;
+using JobFinder.API.ErrorHandler;
 using JobFinder.Application;
 using JobFinder.Infrastructure;
 
@@ -19,6 +20,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapSwagger();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

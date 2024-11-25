@@ -180,3 +180,4 @@ C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\ru\Microsoft.CodeAnaly
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\API\obj\Debug\net8.0\API.sourcelink.json
