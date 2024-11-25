@@ -13,3 +13,4 @@ C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Application\obj\Debug\n
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Application\obj\Debug\net8.0\refint\JobFinder.Application.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Application\obj\Debug\net8.0\JobFinder.Application.pdb
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Application\obj\Debug\net8.0\ref\JobFinder.Application.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Application\obj\Debug\net8.0\JobFinder.Application.sourcelink.json

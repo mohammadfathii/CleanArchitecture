@@ -28,11 +28,12 @@ public sealed class Skill : AggregateRoot<SkillId>
     public string SkillName { get; private set; }
     public SkillRating SkillRating { get; private set; }
 
-      #pragma warning disable CS8618
-  private Skill(){
+#pragma warning disable CS8618
+    private Skill()
+    {
 
-  }
-  #pragma warning restore CS8618
+    }
+#pragma warning restore CS8618
 
 
 }

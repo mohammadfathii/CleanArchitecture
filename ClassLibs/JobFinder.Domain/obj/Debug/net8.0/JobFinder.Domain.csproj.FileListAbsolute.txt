@@ -10,3 +10,4 @@ C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.pdb
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\ref\JobFinder.Domain.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.csproj.AssemblyReference.cache
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Domain\obj\Debug\net8.0\JobFinder.Domain.sourcelink.json

@@ -17,3 +17,4 @@ C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Infrastructure\obj\Debu
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Infrastructure\obj\Debug\net8.0\JobFinder.Infrastructure.pdb
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Infrastructure\obj\Debug\net8.0\JobFinder.Infrastructure.genruntimeconfig.cache
 C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Infrastructure\obj\Debug\net8.0\ref\JobFinder.Infrastructure.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\ClassLibs\JobFinder.Infrastructure\obj\Debug\net8.0\JobFinder.Infrastructure.sourcelink.json

@@ -1,10 +1,8 @@
 using JobFinder.Domain.ResumeAggregate.ValueObjects;
-using JobFinder.Domain.SkillAggregate.ValueObjects;
 using JobFinder.Domain.UserAggregate;
 using JobFinder.Domain.UserAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace JobFinder.Infrastructure.Persistence.Configurations;
 
@@ -56,7 +54,7 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
       rb.OwnsMany(t => t.Skills, sb =>
       {
         sb.ToTable("SkillIds");
-        
+
         sb.Property(t => t.Value)
           .HasColumnName("SkillId")
           .ValueGeneratedNever();
