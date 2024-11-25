@@ -1,6 +1,5 @@
 namespace JobFinder.API.Controllers;
 
-using JobFinder.Domain.ResumeAggregate.ValueObjects;
 using JobFinder.Application.User.Queries.GetUser;
 using JobFinder.Application.User.Commands.Create;
 using JobFinder.Application.Common.Interfaces;
@@ -28,7 +27,7 @@ public class HomeController : ControllerBase
   [HttpGet("/Home/Get")]
   public async Task<IActionResult> Home()
   {
-    var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad fathi", "edovoss", "mohammad@gmail.com", "12jhvbhv34", UserPermission.Admin, ResumeId.CreateUnique()));
+    var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad fathi", "edovoss", "mohammad@gmail.com", "12jhvbhv34", UserPermission.Admin));
     // var command = new TestUserCommand("Masdaso");
 
     var result = await _sender.Send(command);
@@ -57,11 +56,10 @@ public class HomeController : ControllerBase
   [HttpGet("/Register")]
   public async Task<string> Register()
   {
-    var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad asdsafathi", "edovosdasdsas", "mohaasdsadammad@gmail.com", "12jhvdasdsabhv34", UserPermission.Admin, ResumeId.CreateUnique()));
+    var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad asdsafathi", "edovosdasdsas", "mohaasdsadammad@gmail.com", "12jhvdasdsabhv34", UserPermission.Admin));
 
     var result = await _sender.Send(command);
-    userId = result.Value.Id.Value.ToString();
-    return userId;
+    return result.Value.Id.Value.ToString();
   }
 
   [HttpGet("/Login")]
