@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TA5vBvNYOw4gf+LftXgN9PN8V8/XIZE31hM1pf3cyOc=",
+  "Hash": "H15cOBwqvljzg39WNYz8RUFOOOO91NGrBZaD/UEPe0E=",
   "Source": "Front",
   "BasePath": "_content/Front",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Front\\wwwroot",
       "Source": "Front",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
+      "ContentRoot": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
       "BasePath": "_content/Front",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Front.styles.css",
+      "Identity": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Front.styles.css",
       "SourceId": "Front",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Front",
       "RelativePath": "Front.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Front.styles.css"
+      "OriginalItemSpec": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Front.styles.css"
     },
     {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Front.bundle.scp.css",
+      "Identity": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Front.bundle.scp.css",
       "SourceId": "Front",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/Front",
       "RelativePath": "Front.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Front.bundle.scp.css"
+      "OriginalItemSpec": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Front.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\app.css",
+      "Identity": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\app.css",
       "SourceId": "Front",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
+      "ContentRoot": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
       "BasePath": "_content/Front",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "Front",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
+      "ContentRoot": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
       "BasePath": "_content/Front",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "Front",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
+      "ContentRoot": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
       "BasePath": "_content/Front",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\favicon.png",
+      "Identity": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\favicon.png",
       "SourceId": "Front",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
+      "ContentRoot": "c:\\Users\\lenovo\\Desktop\\Blog-NETCore\\Front\\wwwroot\\",
       "BasePath": "_content/Front",
       "RelativePath": "favicon.png",
       "AssetKind": "All",

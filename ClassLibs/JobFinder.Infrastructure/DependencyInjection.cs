@@ -3,6 +3,7 @@ namespace JobFinder.Infrastructure;
 using System.Text;
 using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Common.Repositories;
+using JobFinder.Infrastructure.Common.Interceptors;
 using JobFinder.Infrastructure.Common.Repositories;
 using JobFinder.Infrastructure.Common.Services;
 using JobFinder.Infrastructure.Persistence;
@@ -17,6 +18,7 @@ public static class DependencyInjection
   {
     var connectionString = "Server=localhost;DataBase=JobFinderCADDD;Trusted_Connection=True;TrustServerCertificate=True";
 
+    services.AddScoped<PublishDomainEventsInterceptor>();
     services.AddDbContext<JobFinderDbContext>(options => options.UseSqlServer(connectionString));
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<ITokenGenerator,TokenGenerator>();

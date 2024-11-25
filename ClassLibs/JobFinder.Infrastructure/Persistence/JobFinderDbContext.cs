@@ -1,17 +1,31 @@
 namespace JobFinder.Infrastructure.Persistence;
 
+using JobFinder.Domain.Common.Models;
 using JobFinder.Domain.ResumeAggregate;
 using JobFinder.Domain.SkillAggregate;
 using JobFinder.Domain.UserAggregate;
+using JobFinder.Infrastructure.Common.Interceptors;
 using Microsoft.EntityFrameworkCore;
 
 public class JobFinderDbContext : DbContext
 {
-  public JobFinderDbContext(DbContextOptions<JobFinderDbContext> options) : base(options) { }
+  private PublishDomainEventsInterceptor _publishDomainEventsInterceptor;
+
+  public JobFinderDbContext(DbContextOptions<JobFinderDbContext> options,PublishDomainEventsInterceptor publishDomainEventsInterceptor) : base(options) {
+    _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
+  }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
-    modelBuilder.ApplyConfigurationsFromAssembly(typeof(JobFinderDbContext).Assembly);
+    modelBuilder
+    .Ignore<List<IDomainEvent>>()
+    .ApplyConfigurationsFromAssembly(typeof(JobFinderDbContext).Assembly);
+  }
+
+  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+  {
+    optionsBuilder.AddInterceptors(_publishDomainEventsInterceptor);
+    base.OnConfiguring(optionsBuilder);
   }
 
   public DbSet<User> Users { get; set; } = null!;

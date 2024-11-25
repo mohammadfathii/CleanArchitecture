@@ -1,0 +1,26 @@
+****************** Domain Events ******************
+
+Event Trigger => Invoked All The Domain Events
+
+1.Store All The Events Inside a List Of Object
+- Base Class For our Event Object of Object Named IDomainEvent.
+- Create a private List of Domain Events and a public list for underlying list.
+- Add the Clear and AddDomainEvent Methods.
+
+2.Create a Interceptor Named PublishDomainEvents
+- Create a Class Interceptor and Extends from SaveChangesInterceptor.
+- Override SaveChanges and SaveChangesAsync .
+- Create a Interface inside the Common/Models in Domain Layer To Have A List Of DomainEvents and remove method and extends the entity from it.
+- Create a Method to get all the entities that been called to save and publish all their events they got .
+- Call This Method inside that two methods we overrided.
+- Add this class to dependency injection.
+- And added the interceptor as interceptor inside the DbContext on Overrided Method OnConfiguring.
+
+3. Fix Everything else and create a Event
+- Extends The IDomainEvent class From INotification Form MediatR Package
+- Create an Event as Record Inside The Aggregate Folder in DomainLayer and extended from IDomainEvent
+- Add This DomainEvent to list of Domain Events Using The AddDomainEvent We created inside the entity base class.
+- Go On and create the event handler inside commands folder and extends the class we created from INotificationHanlder<INotification> , the INotification Class Is Our Event That is Record Type
+
+4.The End
+- The Domain We Subscirbed will be executed after the method or command is called .

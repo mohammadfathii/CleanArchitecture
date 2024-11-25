@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "cq58dmnWixw=",
+  "dgSpecHash": "HnlU3FR6VBE=",
   "success": true,
   "projectFilePath": "C:\\Users\\lenovo\\Desktop\\Blog-NETCore\\ClassLibs\\JobFinder.Domain\\JobFinder.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

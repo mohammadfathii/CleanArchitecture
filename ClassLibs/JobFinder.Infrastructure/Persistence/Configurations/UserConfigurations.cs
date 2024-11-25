@@ -55,7 +55,8 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
 
       rb.OwnsMany(t => t.Skills, sb =>
       {
-
+        sb.ToTable("SkillIds");
+        
         sb.Property(t => t.Value)
           .HasColumnName("SkillId")
           .ValueGeneratedNever();

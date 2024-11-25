@@ -1,11 +1,10 @@
 namespace JobFinder.Domain.UserAggregate;
 
-using System.ComponentModel.DataAnnotations.Schema;
 using JobFinder.Domain.Common.Models;
 using JobFinder.Domain.UserAggregate.Enums;
 using JobFinder.Domain.UserAggregate.ValueObjects;
-using JobFinder.Domain.ResumeAggregate.ValueObjects;
 using JobFinder.Domain.ResumeAggregate;
+using JobFinder.Domain.UserAggregate.Events;
 
 public sealed class User : AggregateRoot<UserId>
 {
@@ -27,12 +26,16 @@ public sealed class User : AggregateRoot<UserId>
         UserPermission Permission,
         List<Resume> Resumes)
     {
-        return new(UserId.CreateUnique(),
+        var user = new User(UserId.CreateUnique(),
             FullName,
             UserName,
             Email,
             Password,
             Permission, Resumes);
+
+        user.AddToDomainEvents(new UserCreatedEvent(user));
+
+        return user;
     }
 
 

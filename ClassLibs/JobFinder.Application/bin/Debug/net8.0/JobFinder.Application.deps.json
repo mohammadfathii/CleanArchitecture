@@ -148,6 +148,9 @@
       },
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "JobFinder.Domain/1.0.0": {
+        "dependencies": {
+          "MediatR": "12.4.1"
+        },
         "runtime": {
           "JobFinder.Domain.dll": {
             "assemblyVersion": "1.0.0",
