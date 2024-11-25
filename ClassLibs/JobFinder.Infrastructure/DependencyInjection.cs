@@ -18,10 +18,12 @@ public static class DependencyInjection
   {
     var connectionString = "Server=localhost;DataBase=JobFinderCADDD;Trusted_Connection=True;TrustServerCertificate=True";
 
-    services.AddScoped<PublishDomainEventsInterceptor>();
     services.AddDbContext<JobFinderDbContext>(options => options.UseSqlServer(connectionString));
+
+    services.AddScoped<PublishDomainEventsInterceptor>();
     services.AddScoped<IUserRepository, UserRepository>();
-    services.AddScoped<ITokenGenerator,TokenGenerator>();
+    services.AddScoped<ITokenGenerator, TokenGenerator>();
+    services.AddScoped<IPasswordHasher, PasswordHasher>();
 
     services.AddAuthSettings();
 
