@@ -23,7 +23,7 @@ public static class DependencyInjection
     services.AddScoped<PublishDomainEventsInterceptor>();
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<ITokenGenerator, TokenGenerator>();
-    services.AddScoped<IPasswordHasher, PasswordHasher>();
+    // services.AddScoped<IPasswordHasher, PasswordHasher>();
 
     services.AddAuthSettings();
 

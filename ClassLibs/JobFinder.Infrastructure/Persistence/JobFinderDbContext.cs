@@ -1,6 +1,8 @@
 namespace JobFinder.Infrastructure.Persistence;
 
 using JobFinder.Domain.Common.Models;
+using JobFinder.Domain.EmployerAggregate;
+using JobFinder.Domain.JobAggregate;
 using JobFinder.Domain.ResumeAggregate;
 using JobFinder.Domain.SkillAggregate;
 using JobFinder.Domain.UserAggregate;
@@ -31,4 +33,6 @@ public class JobFinderDbContext : DbContext
   public DbSet<User> Users { get; set; } = null!;
   public DbSet<Resume> Resumes { get; set; } = null!;
   public DbSet<Skill> Skills { get; set; } = null!;
+  public DbSet<Job> Jobs { get; set; } = null!;
+  public DbSet<Employer> Employers { get; set; } = null!;
 }
