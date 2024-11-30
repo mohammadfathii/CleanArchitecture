@@ -13,13 +13,16 @@ public sealed class Employer : AggregateRoot<EmployerId>
       string Email,
       string PhoneNumber,
       string Address,
-      string Description, List<Job> Jobs) : base(Id)
+      string Description,
+      string Password,
+      List<Job> Jobs) : base(Id)
   {
     this.CompanyName = CompanyName;
     this.Email = Email;
     this.PhoneNumber = PhoneNumber;
     this.Address = Address;
     this.Description = Description;
+        this.Password = Password;
     this._jobs = Jobs;
   }
 
@@ -28,6 +31,7 @@ public sealed class Employer : AggregateRoot<EmployerId>
       string PhoneNumber,
       string Address,
       string Description,
+      string Password,
       List<Job> Jobs)
   {
     return new(
@@ -37,6 +41,7 @@ public sealed class Employer : AggregateRoot<EmployerId>
         PhoneNumber,
         Address,
         Description,
+        Password,
         Jobs);
   }
 
@@ -45,8 +50,9 @@ public sealed class Employer : AggregateRoot<EmployerId>
   public string PhoneNumber { get; private set; }
   public string Address { get; private set; }
   public string Description { get; private set; }
+    public string Password { get; private set; }
 
-  private readonly List<Job> _jobs = new();
+    private readonly List<Job> _jobs = new();
   public IReadOnlyList<Job> Jobs => _jobs.AsReadOnly();
 #pragma warning disable CS8618
   private Employer()
