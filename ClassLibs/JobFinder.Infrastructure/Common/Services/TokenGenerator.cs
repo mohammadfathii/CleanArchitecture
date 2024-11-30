@@ -5,27 +5,42 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using JobFinder.Application.Common.Interfaces;
+using JobFinder.Application.Common.Models;
+using JobFinder.Domain.EmployerAggregate;
+using JobFinder.Domain.EmployerAggregate.ValueObjects;
 using JobFinder.Domain.UserAggregate;
 using Microsoft.IdentityModel.Tokens;
 
 public class TokenGenerator : ITokenGenerator
 {
-  public string GenerateJWTToken(User user)
-  {
+    public string GenerateEmployerToken(Employer employer)
+    {
+        return GenerateJWTToken(new TokenGeneratorModel()
+        {
+            Identifier = employer.Id.Value.ToString(),
+            Email = employer.Email,
+            Type = TokenGeneratorType.Employer,
+        });
+    }
+
+    public string GenerateJWTToken(TokenGeneratorModel token)
+    {
+    var key = token.Type == TokenGeneratorType.User ? JwtSettings.UserSecretKey : JwtSettings.EmployerSecretKey;
+    var issuer = token.Type == TokenGeneratorType.User ? JwtSettings.UserIssuer : JwtSettings.EmployerIssuer;
+
     var signingCredentials = new SigningCredentials(
-      new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.SecretKey)),
+      new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
       SecurityAlgorithms.HmacSha256
     );
 
     var claims = new List<Claim>(){
-        new Claim(JwtRegisteredClaimNames.Sub,user.Id.Value.ToString()),
-        new Claim(JwtRegisteredClaimNames.Email,user.Email),
-        new Claim(JwtRegisteredClaimNames.UniqueName,user.UserName),
+        new Claim(JwtRegisteredClaimNames.Sub,token.Identifier),
+        new Claim(JwtRegisteredClaimNames.Email,token.Email),
     };
 
     var jwtSecurityToken = new JwtSecurityToken(
-      audience: JwtSettings.Issuer,
-      issuer: JwtSettings.Issuer,
+      audience: issuer,
+      issuer: issuer,
       signingCredentials: signingCredentials,
       claims: claims,
       expires: DateTime.Now.AddDays(1));
@@ -42,4 +57,14 @@ public class TokenGenerator : ITokenGenerator
     }
     return Convert.ToBase64String(token);
   }
+
+    public string GenerateUserToken(User user)
+    {
+        return GenerateJWTToken(new TokenGeneratorModel()
+        {
+            Identifier = user.Id.Value.ToString(),
+            Email = user.Email,
+            Type = TokenGeneratorType.User,
+        });
+    }
 }

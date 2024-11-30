@@ -46,6 +46,7 @@ public static class DependencyInjection
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.SecretKey))
             });
 
+
     return services;
   }
 }
