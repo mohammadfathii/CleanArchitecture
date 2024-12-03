@@ -71,7 +71,7 @@ public class HomeController : ControllerBase
     {
       return Problem(statusCode: 404, title: "user not founded !");
     }
-    var token = _tokenGenerator.GenerateJWTToken(user);
+    var token = _tokenGenerator.GenerateUserToken(user);
     return Ok(token);
   }
 

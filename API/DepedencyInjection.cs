@@ -9,8 +9,6 @@ public static class DepedencyInjection
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
 
-    services.AddAuthentication().AddBearerToken();
-
     return services;
   }
 }

@@ -1,4 +1,5 @@
 using JobFinder.Application.Common.Interfaces;
+using JobFinder.Application.Employer.Commands.Create;
 using JobFinder.Application.User.Commands.Create;
 using JobFinder.Domain.UserAggregate.Enums;
 using MediatR;
@@ -19,10 +20,10 @@ public class AuthController : ControllerBase
         _sender = sender;
     }
 
-    [HttpGet("/Login/User")]
+    [HttpGet("/Register/User")]
     public async Task<IActionResult> LoginUser()
     {
-        var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad fathi", "ss", "mohammadail.com", "12jhvbhv34", UserPermission.Admin));
+        var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad fathi", "sdsdsadsas", "mohammadail@adsa.com", "12jhvbsdshv34", UserPermission.Admin));
         // var command = new TestUserCommand("Masdaso");
 
         var result = await _sender.Send(command);
@@ -31,15 +32,14 @@ public class AuthController : ControllerBase
         return Ok(token);
     }
 
-    [HttpGet("/Login/Employer")]
+    [HttpGet("/Register/Employer")]
     public async Task<IActionResult> LoginEmployer()
     {
-        var command = new CreateUserCommand(new CreateEmployerCommand("mohammad fathi", "ss", "mohammadail.com", "12jhvbhv34", UserPermission.Admin));
-        // var command = new TestUserCommand("Masdaso");
+        var command = new CreateEmployerCommand(new CreateEmployerCommandDTO("TestCompany","testemil@gmail.com","090123122","asdasdsadasdasda","asdsadsadasdasdsadsa","asdsadksajdbnaskda"));
 
         var result = await _sender.Send(command);
         var errors = result.Errors;
-        var token = _tokenGenerator.GenerateUserToken(result.Value);
+        var token = _tokenGenerator.GenerateEmployerToken(result.Value);
         return Ok(token);
     }
 

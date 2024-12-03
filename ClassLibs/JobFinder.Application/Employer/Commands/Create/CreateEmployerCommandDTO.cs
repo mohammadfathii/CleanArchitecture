@@ -7,5 +7,4 @@ public record CreateEmployerCommandDTO(string CompanyName,
       string PhoneNumber,
       string Address,
       string Description,
-      string Password,
-      List<Job> Jobs);
+      string Password);

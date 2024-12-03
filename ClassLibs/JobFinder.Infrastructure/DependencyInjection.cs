@@ -19,10 +19,14 @@ public static class DependencyInjection
 
     services.AddDbContext<JobFinderDbContext>(options => options.UseSqlServer(connectionString));
 
-    services.AddScoped<PublishDomainEventsInterceptor>();
+    #region Repositories
     services.AddScoped<IUserRepository, UserRepository>();
+    services.AddScoped<IEmployerRepository, EmployerRepository>();
+    #endregion
+
+    services.AddScoped<PublishDomainEventsInterceptor>();
     services.AddScoped<ITokenGenerator, TokenGenerator>();
-    // services.AddScoped<IPasswordHasher, PasswordHasher>();
+    services.AddScoped<IPasswordEncoder, PasswordEncoder>();
 
     services.AddAuthSettings();
 
@@ -32,8 +36,8 @@ public static class DependencyInjection
   public static IServiceCollection AddAuthSettings(this IServiceCollection services)
   {
     // User Scheme
-        services.AddAuthentication("UserScheme")
-            .AddJwtBearer(options =>
+        services.AddAuthentication()
+            .AddJwtBearer("UserScheme",options =>
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                   ValidateIssuer = true,
@@ -47,8 +51,8 @@ public static class DependencyInjection
                 });
 
         // added Employer Scheme
-        services.AddAuthentication("EmployerScheme")
-            .AddJwtBearer(options =>
+        services.AddAuthentication()
+            .AddJwtBearer("EmployerScheme", options =>
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuer = true,
@@ -64,12 +68,12 @@ public static class DependencyInjection
         // added authorization policy role-based
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("UserRoleAdminPolicy",policy => policy.RequireClaim("Role","Admin").AddAuthenticationSchemes("UserScheme"));
-            options.AddPolicy("UserRoleOwnerPolicy",policy => policy.RequireClaim("Role","Owner").AddAuthenticationSchemes("UserScheme"));
-            options.AddPolicy("UserRoleSupervisorPolicy",policy => policy.RequireClaim("Role","Supervisor").AddAuthenticationSchemes("UserScheme"));
+            options.AddPolicy("UserRoleAdminPolicy", policy => policy.RequireClaim("Role", "Admin").AddAuthenticationSchemes("UserScheme"));
+            options.AddPolicy("UserRoleOwnerPolicy", policy => policy.RequireClaim("Role", "Owner").AddAuthenticationSchemes("UserScheme"));
+            options.AddPolicy("UserRoleSupervisorPolicy", policy => policy.RequireClaim("Role", "Supervisor").AddAuthenticationSchemes("UserScheme"));
         });
 
 
         return services;
-  }
+    }
 }

@@ -13,7 +13,7 @@ namespace API.Controllers
         {
             return Ok("User");
         }
-        [HttpGet("EmployerCheck")]
+        [HttpGet("/EmployerCheck")]
         [Authorize(AuthenticationSchemes = "EmployerScheme")]
         public IActionResult EmployerCheck()
         {
