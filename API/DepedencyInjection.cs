@@ -1,3 +1,5 @@
+using API.MapsterConfigurations;
+
 namespace JobFinder.API;
 
 public static class DepedencyInjection
@@ -8,6 +10,8 @@ public static class DepedencyInjection
 
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
+
+    services.AddMapsterConfigs();
 
     return services;
   }

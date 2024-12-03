@@ -1,11 +1,12 @@
 using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Employer.Commands.Create;
 using JobFinder.Application.User.Commands.Create;
-using JobFinder.Domain.UserAggregate.Enums;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using JobFinder.Application.Common.Errors;
 using System.Net;
+using API.Models;
+using Mapster;
 
 namespace JobFinder.API.Controllers;
 
@@ -23,16 +24,18 @@ public class AuthController : ControllerBase
     }
 
     [HttpGet("/Register/User")]
-    public async Task<IActionResult> LoginUser()
+    public async Task<IActionResult> RegisterUser([FromBody] RegisterUserModel request)
     {
-        var command = new CreateUserCommand(new CreateUserCommandDTO("mohammad fathi", "sdsdsadsas", "mohammadail@adsa.com", "12jhvbsdshv34", UserPermission.Admin));
-        // var command = new TestUserCommand("Masdaso");
+        var command = request.Adapt<CreateUserCommand>();        
 
         var result = await _sender.Send(command);
         var error = result.Errors[0];
 
         if (error != null && error is EntityExistsError) {
             return Problem(statusCode : (int)HttpStatusCode.Conflict,title : error.Message);
+        }else if (error != null && error is ValidationError)
+        {
+            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: error.Message);
         }
 
         var token = _tokenGenerator.GenerateUserToken(result.Value);
@@ -40,14 +43,18 @@ public class AuthController : ControllerBase
     }
 
     [HttpGet("/Register/Employer")]
-    public async Task<IActionResult> LoginEmployer()
+    public async Task<IActionResult> RegisterEmployer([FromBody] RegisterEmployerModel request)
     {
-        var command = new CreateEmployerCommand(new CreateEmployerCommandDTO("TestCompany","testemil@gmail.com","090123122","asdasdsadasdasda","asdsadsadasdasdsadsa","asdsadksajdbnaskda"));
+        var command = request.Adapt<CreateEmployerCommand>();
 
         var result = await _sender.Send(command);
         var error = result.Errors[0];
 
         if (error != null && error is EntityExistsError)
+        {
+            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: error.Message);
+        }
+        else if (error != null && error is ValidationError)
         {
             return Problem(statusCode: (int)HttpStatusCode.Conflict, title: error.Message);
         }
