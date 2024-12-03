@@ -1,6 +1,7 @@
 ﻿namespace JobFinder.Application.Employer.Commands.Create;
 
 using FluentResults;
+using JobFinder.Application.Common.Errors;
 using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Common.Repositories;
 using JobFinder.Domain.EmployerAggregate;
@@ -22,6 +23,19 @@ public class CreateEmployerCommandHandler : IRequestHandler<CreateEmployerComman
 
     public async Task<Result<Employer>> Handle(CreateEmployerCommand request, CancellationToken cancellationToken)
     {
+        var exists = await _employerRepository.EmployerExists(request.employer.Email,request.employer.CompanyName);
+
+        if (exists)
+        {
+            return Result.Fail(new[]
+            {
+                new EntityExistsError()
+                {
+                    Message = "the employer already exists !"
+                }
+            });
+        }
+        
         var hashPassword = _passwordHasher.HashPassword(request.employer.Password);
 
         var employer = await _employerRepository.Create(Employer.Create(

@@ -2,8 +2,10 @@ using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Employer.Commands.Create;
 using JobFinder.Application.User.Commands.Create;
 using JobFinder.Domain.UserAggregate.Enums;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using JobFinder.Application.Common.Errors;
+using System.Net;
 
 namespace JobFinder.API.Controllers;
 
@@ -27,7 +29,12 @@ public class AuthController : ControllerBase
         // var command = new TestUserCommand("Masdaso");
 
         var result = await _sender.Send(command);
-        var errors = result.Errors;
+        var error = result.Errors[0];
+
+        if (error != null && error is EntityExistsError) {
+            return Problem(statusCode : (int)HttpStatusCode.Conflict,title : error.Message);
+        }
+
         var token = _tokenGenerator.GenerateUserToken(result.Value);
         return Ok(token);
     }
@@ -38,7 +45,13 @@ public class AuthController : ControllerBase
         var command = new CreateEmployerCommand(new CreateEmployerCommandDTO("TestCompany","testemil@gmail.com","090123122","asdasdsadasdasda","asdsadsadasdasdsadsa","asdsadksajdbnaskda"));
 
         var result = await _sender.Send(command);
-        var errors = result.Errors;
+        var error = result.Errors[0];
+
+        if (error != null && error is EntityExistsError)
+        {
+            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: error.Message);
+        }
+
         var token = _tokenGenerator.GenerateEmployerToken(result.Value);
         return Ok(token);
     }

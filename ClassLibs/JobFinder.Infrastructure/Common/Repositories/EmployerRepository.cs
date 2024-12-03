@@ -1,11 +1,8 @@
 ﻿using JobFinder.Application.Common.Repositories;
 using JobFinder.Domain.EmployerAggregate;
+using JobFinder.Domain.UserAggregate;
 using JobFinder.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobFinder.Infrastructure.Common.Repositories
 {
@@ -29,5 +26,11 @@ namespace JobFinder.Infrastructure.Common.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> EmployerExists(string Email, string CompanyName)
+        {
+            return await _dbContext.Employers.AnyAsync(e => e.Email == Email || e.CompanyName == CompanyName);
+        }
+
     }
 }

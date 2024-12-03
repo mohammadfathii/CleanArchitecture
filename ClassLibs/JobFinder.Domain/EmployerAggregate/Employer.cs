@@ -22,7 +22,7 @@ public sealed class Employer : AggregateRoot<EmployerId>
     this.PhoneNumber = PhoneNumber;
     this.Address = Address;
     this.Description = Description;
-        this.Password = Password;
+    this.Password = Password;
     this._jobs = Jobs;
   }
 
