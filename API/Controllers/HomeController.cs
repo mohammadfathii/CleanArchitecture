@@ -33,8 +33,6 @@ public class HomeController : ControllerBase
     var result = await _sender.Send(command);
     var errors = result.Errors;
 
-    throw new Exception("test exception");
-
     // handling errors
     if (!result.IsSuccess && errors[0] is ValidationError)
     {

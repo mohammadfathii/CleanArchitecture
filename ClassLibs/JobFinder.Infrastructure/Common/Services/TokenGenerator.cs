@@ -1,13 +1,12 @@
 namespace JobFinder.Infrastructure.Common.Services;
 
-using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
+using System.IdentityModel.Tokens.Jwt;
 using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Common.Models;
 using JobFinder.Domain.EmployerAggregate;
-using JobFinder.Domain.EmployerAggregate.ValueObjects;
 using JobFinder.Domain.UserAggregate;
 using Microsoft.IdentityModel.Tokens;
 
@@ -25,27 +24,27 @@ public class TokenGenerator : ITokenGenerator
 
     public string GenerateJWTToken(TokenGeneratorModel token)
     {
-    var key = token.Type == TokenGeneratorType.User ? JwtSettings.UserSecretKey : JwtSettings.EmployerSecretKey;
-    var issuer = token.Type == TokenGeneratorType.User ? JwtSettings.UserIssuer : JwtSettings.EmployerIssuer;
+        var key = token.Type == TokenGeneratorType.User ? JwtSettings.UserSecretKey : JwtSettings.EmployerSecretKey;
+        var issuer = token.Type == TokenGeneratorType.User ? JwtSettings.UserIssuer : JwtSettings.EmployerIssuer;
 
-    var signingCredentials = new SigningCredentials(
-      new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
-      SecurityAlgorithms.HmacSha256
-    );
+        var signingCredentials = new SigningCredentials(
+          new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+          SecurityAlgorithms.HmacSha256
+        );
 
-    var claims = new List<Claim>(){
-        new Claim(JwtRegisteredClaimNames.Sub,token.Identifier),
-        new Claim(JwtRegisteredClaimNames.Email,token.Email),
-    };
+        var claims = new List<Claim>(){
+            new Claim(JwtRegisteredClaimNames.Sub,token.Identifier),
+            new Claim(JwtRegisteredClaimNames.Email,token.Email),
+        };
 
-    var jwtSecurityToken = new JwtSecurityToken(
-      audience: issuer,
-      issuer: issuer,
-      signingCredentials: signingCredentials,
-      claims: claims,
-      expires: DateTime.Now.AddDays(1));
+        var jwtSecurityToken = new JwtSecurityToken(
+          audience: issuer,
+          issuer: issuer,
+          signingCredentials: signingCredentials,
+          claims: claims,
+          expires: DateTime.Now.AddDays(1));
 
-    return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+        return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
   }
 
   public string GenerateRefreshToken()
