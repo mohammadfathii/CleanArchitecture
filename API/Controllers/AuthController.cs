@@ -33,14 +33,13 @@ public class AuthController : ControllerBase
         var command = new CreateUserCommand(new CreateUserCommandDTO(request.FullName,request.UserName,request.Email,request.Password,Domain.UserAggregate.Enums.UserPermission.Employe));
 
         var result = await _sender.Send(command);
-        var error = result.Errors[0];
 
-        if (error != null && error is EntityExistsError) {
-            return Problem(statusCode : (int)HttpStatusCode.Conflict,title : error.Message);
+        if (result.Errors[0] != null && result.Errors[0] is EntityExistsError) {
+            return Problem(statusCode : (int)HttpStatusCode.Conflict,title : result.Errors[0].Message);
         }
-        else if (error != null && error is ValidationError)
+        else if (result.Errors[0] != null && result.Errors[0] is ValidationError)
         {
-            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: error.Message);
+            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
         }
 
         var token = _tokenGenerator.GenerateUserToken(result.Value);
@@ -53,15 +52,14 @@ public class AuthController : ControllerBase
         var command = _mapper.Map<CreateEmployerCommand>(request);
 
         var result = await _sender.Send(command);
-        var error = result.Errors[0];
 
-        if (error != null && error is EntityExistsError)
+        if (result.Errors[0] != null && result.Errors[0] is EntityExistsError)
         {
-            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: error.Message);
+            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
         }
-        else if (error != null && error is ValidationError)
+        else if (result.Errors[0] != null && result.Errors[0] is ValidationError)
         {
-            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: error.Message);
+            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
         }
 
         var token = _tokenGenerator.GenerateEmployerToken(result.Value);

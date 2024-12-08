@@ -21,11 +21,13 @@ if (app.Environment.IsDevelopment())
 
 app.MapSwagger();
 
-app.UseMiddleware<ErrorHandlerMiddleware>();
+// app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseExceptionHandler("/error");
 
 app.Run();
