@@ -16,7 +16,6 @@ namespace API.MapsterConfigurations
             // employer register
             config.NewConfig<RegisterEmployerModel,CreateEmployerCommand>()
                 .Map(dest => dest.employer,source => source);
-
         }
     }
 }

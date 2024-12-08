@@ -71,22 +71,34 @@
   },
   {
     "ContainingType": "JobFinder.API.Controllers.AuthController",
-    "Method": "LoginEmployer",
+    "Method": "RegisterEmployer",
     "RelativePath": "Register/Employer",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.Models.RegisterEmployerModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "JobFinder.API.Controllers.AuthController",
-    "Method": "LoginUser",
+    "Method": "RegisterUser",
     "RelativePath": "Register/User",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.Models.RegisterUserModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

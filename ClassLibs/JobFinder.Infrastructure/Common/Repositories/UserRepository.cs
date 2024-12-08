@@ -1,6 +1,5 @@
 namespace JobFinder.Infrastructure.Common.Repositories;
 
-using System;
 using JobFinder.Application.Common.Repositories;
 using JobFinder.Domain.UserAggregate;
 using JobFinder.Infrastructure.Persistence;

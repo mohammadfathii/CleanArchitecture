@@ -25,11 +25,12 @@ public class ErrorHandlerMiddleware
       {
         Title = "there is an unexpected error caused this !",
         Status = (int)HttpStatusCode.InternalServerError,
-        Detail = e.Message,
+        Detail = e.Message
       };
 
       var jsonSerializer = JsonSerializer.Serialize(problemDetails);
 
+      httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
       httpContext.Response.ContentType = "application/problem+json";
       await httpContext.Response.WriteAsync(jsonSerializer);
     }

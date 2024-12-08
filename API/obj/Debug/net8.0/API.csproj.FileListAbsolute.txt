@@ -182,3 +182,6 @@ C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\zh-Hans\Microsoft.Code
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\lenovo\Desktop\Blog-NETCore\API\obj\Debug\net8.0\API.sourcelink.json
 C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\Mapster.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\Mapster.Core.dll
+C:\Users\lenovo\Desktop\Blog-NETCore\API\bin\Debug\net8.0\Mapster.DependencyInjection.dll
