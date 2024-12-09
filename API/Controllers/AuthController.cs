@@ -7,6 +7,7 @@ using JobFinder.Application.Common.Errors;
 using System.Net;
 using API.Models;
 using MapsterMapper;
+using JobFinder.Application.User.Queries.LoginUser;
 
 namespace JobFinder.API.Controllers;
 
@@ -26,7 +27,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("/Register/User")]
-    public async Task<IActionResult> RegisterUser(RegisterUserModel request)
+    public async Task<IActionResult> RegisterUser([FromBody] RegisterUserModel request)
     {
         var command = _mapper.Map<CreateUserCommand>(request);
 
@@ -45,7 +46,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("/Register/Employer")]
-    public async Task<IActionResult> RegisterEmployer(RegisterEmployerModel request)
+    public async Task<IActionResult> RegisterEmployer([FromBody] RegisterEmployerModel request)
     {
         var command = _mapper.Map<CreateEmployerCommand>(request);
 
@@ -64,9 +65,18 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("/Login/User")]
-    public IActionResult LoginUser(){
-        
-        return Ok();
+    public async Task<IActionResult> LoginUser([FromBody] LoginUserModel request){
+        var query = _mapper.Map<LoginUserQuery>(request);
+
+        var user = await _sender.Send(query);
+
+        if(user.Errors != null && user.Errors[0] is AuthenticationFaieldError){
+            return Problem(statusCode : (int)HttpStatusCode.BadRequest,title : user.Errors[0].Message);
+        }
+
+        var token = _tokenGenerator.GenerateUserToken(user.Value);
+
+        return Ok(token);
     }
 
     [HttpPost("/Login/Employer")]
