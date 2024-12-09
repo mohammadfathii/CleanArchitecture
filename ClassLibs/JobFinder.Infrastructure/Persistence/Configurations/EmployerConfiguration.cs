@@ -20,6 +20,8 @@ public class EmployerConfiguration : IEntityTypeConfiguration<Employer>
       .ValueGeneratedNever()
       .HasConversion(Id => Id.Value, Value => EmployerId.Create(Value));
 
+    builder.Property(e => e.Password).HasMaxLength(200);
+
     builder.OwnsMany(j => j.Jobs, jb =>
     {
       jb.ToTable("Jobs");

@@ -30,6 +30,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "JobFinder.API.Controllers.ErrorsController",
+    "Method": "Error",
+    "RelativePath": "error",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "JobFinder.API.Controllers.HomeController",
     "Method": "Home",
     "RelativePath": "Home/Get",
@@ -47,6 +57,32 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobFinder.API.Controllers.AuthController",
+    "Method": "LoginEmployer",
+    "RelativePath": "Login/Employer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JobFinder.API.Controllers.AuthController",
+    "Method": "LoginUser",
+    "RelativePath": "Login/User",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.Models.LoginUserModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -73,7 +109,7 @@
     "ContainingType": "JobFinder.API.Controllers.AuthController",
     "Method": "RegisterEmployer",
     "RelativePath": "Register/Employer",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -89,7 +125,7 @@
     "ContainingType": "JobFinder.API.Controllers.AuthController",
     "Method": "RegisterUser",
     "RelativePath": "Register/User",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [

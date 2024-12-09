@@ -8,6 +8,7 @@ using System.Net;
 using API.Models;
 using MapsterMapper;
 using JobFinder.Application.User.Queries.LoginUser;
+using FluentResults;
 
 namespace JobFinder.API.Controllers;
 
@@ -27,18 +28,22 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("/Register/User")]
-    public async Task<IActionResult> RegisterUser([FromBody] RegisterUserModel request)
+    public async Task<IActionResult> RegisterUser(RegisterUserModel request)
     {
         var command = _mapper.Map<CreateUserCommand>(request);
 
         var result = await _sender.Send(command);
 
-        if (result.Errors[0] != null && result.Errors[0] is EntityExistsError) {
-            return Problem(statusCode : (int)HttpStatusCode.Conflict,title : result.Errors[0].Message);
-        }
-        else if (result.Errors[0] != null && result.Errors[0] is ValidationError)
+        if (result.Errors != null && result.Errors.Count > 0)
         {
-            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
+            if (result.Errors[0] is EntityExistsError)
+            {
+                return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
+            }
+            else if (result.Errors[0] is ValidationError)
+            {
+                return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
+            }
         }
 
         var token = _tokenGenerator.GenerateUserToken(result.Value);
@@ -52,12 +57,16 @@ public class AuthController : ControllerBase
 
         var result = await _sender.Send(command);
 
-        if (result.Errors[0] != null && result.Errors[0] is EntityExistsError)
+        if (result.Errors != null && result.Errors.Count > 0)
         {
-            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
-        }else if (result.Errors[0] != null && result.Errors[0] is ValidationError)
-        {
-            return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
+            if (result.Errors[0] is EntityExistsError)
+            {
+                return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
+            }
+            else if (result.Errors[0] is ValidationError)
+            {
+                return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
+            }
         }
 
         var token = _tokenGenerator.GenerateEmployerToken(result.Value);
@@ -70,8 +79,16 @@ public class AuthController : ControllerBase
 
         var user = await _sender.Send(query);
 
-        if(user.Errors != null && user.Errors[0] is AuthenticationFaieldError){
-            return Problem(statusCode : (int)HttpStatusCode.BadRequest,title : user.Errors[0].Message);
+        if (user.Errors != null && user.Errors.Count > 0)
+        {
+            if (user.Errors[0] is AuthenticationFaieldError)
+            {
+                return Problem(statusCode: (int)HttpStatusCode.BadRequest, title: user.Errors[0].Message);
+            }
+            else if (user.Errors[0] is ValidationError)
+            {
+                return Problem(statusCode: (int)HttpStatusCode.Conflict, title: user.Errors[0].Message);
+            }
         }
 
         var token = _tokenGenerator.GenerateUserToken(user.Value);
