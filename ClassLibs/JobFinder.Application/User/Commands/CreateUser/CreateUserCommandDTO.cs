@@ -3,4 +3,4 @@ using JobFinder.Domain.UserAggregate.Enums;
 
 namespace JobFinder.Application.User.Commands.Create;
 
-public record CreateUserCommandDTO(string FullName,string UserName,string Email , string Password,UserPermission Permission);
+public record CreateUserCommandDTO(string FullName,string UserName,string Email , string Password,string PhoneNumber,UserPermission Permission);

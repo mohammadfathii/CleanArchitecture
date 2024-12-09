@@ -8,12 +8,13 @@ using JobFinder.Domain.UserAggregate.Events;
 
 public sealed class User : AggregateRoot<UserId>
 {
-    private User(UserId Id, string FullName, string UserName, string Email, string Password, UserPermission Permission, List<Resume> Resumes) : base(Id)
+    private User(UserId Id, string FullName, string UserName, string Email, string Password,string PhoneNumber, UserPermission Permission, List<Resume> Resumes) : base(Id)
     {
         this.FullName = FullName;
         this.UserName = UserName;
         this.Email = Email;
         this.Password = Password;
+        this.PhoneNumber = PhoneNumber;
         this.Permission = Permission;
         this._resumes = Resumes;
     }
@@ -23,6 +24,7 @@ public sealed class User : AggregateRoot<UserId>
         string UserName,
         string Email,
         string Password,
+        string PhoneNumber,
         UserPermission Permission,
         List<Resume> Resumes)
     {
@@ -31,18 +33,20 @@ public sealed class User : AggregateRoot<UserId>
             UserName,
             Email,
             Password,
-            Permission, Resumes);
+            PhoneNumber,
+            Permission,
+            Resumes);
 
         user.AddToDomainEvents(new UserCreatedEvent(user));
 
         return user;
     }
 
-
     public string FullName { get; private set; }
     public string UserName { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }
+    public string PhoneNumber { get; private set; }
     public UserPermission Permission { get; private set; }
     private readonly List<Resume> _resumes;
     public IReadOnlyList<Resume> Resumes => _resumes.AsReadOnly();

@@ -39,6 +39,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Resul
             request.User.UserName,
             request.User.Email,
             hashPassword,
+            request.User.PhoneNumber,
             UserPermission.Admin,
             new List<Domain.ResumeAggregate.Resume>()));
         return user;

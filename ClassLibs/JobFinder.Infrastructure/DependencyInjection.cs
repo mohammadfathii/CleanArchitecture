@@ -21,6 +21,7 @@ public static class DependencyInjection
 
     #region Repositories
     services.AddScoped<IUserRepository, UserRepository>();
+    services.AddScoped<IResumeRepository,ResumeRepository>();
     services.AddScoped<IEmployerRepository, EmployerRepository>();
     #endregion
 

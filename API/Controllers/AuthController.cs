@@ -25,12 +25,10 @@ public class AuthController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet("/Register/User")]
+    [HttpPost("/Register/User")]
     public async Task<IActionResult> RegisterUser(RegisterUserModel request)
     {
-        // var command = _mapper.Map<CreateUserCommand>(request);
-
-        var command = new CreateUserCommand(new CreateUserCommandDTO(request.FullName,request.UserName,request.Email,request.Password,Domain.UserAggregate.Enums.UserPermission.Employe));
+        var command = _mapper.Map<CreateUserCommand>(request);
 
         var result = await _sender.Send(command);
 
@@ -46,7 +44,7 @@ public class AuthController : ControllerBase
         return Ok(token);
     }
 
-    [HttpGet("/Register/Employer")]
+    [HttpPost("/Register/Employer")]
     public async Task<IActionResult> RegisterEmployer(RegisterEmployerModel request)
     {
         var command = _mapper.Map<CreateEmployerCommand>(request);
@@ -56,8 +54,7 @@ public class AuthController : ControllerBase
         if (result.Errors[0] != null && result.Errors[0] is EntityExistsError)
         {
             return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
-        }
-        else if (result.Errors[0] != null && result.Errors[0] is ValidationError)
+        }else if (result.Errors[0] != null && result.Errors[0] is ValidationError)
         {
             return Problem(statusCode: (int)HttpStatusCode.Conflict, title: result.Errors[0].Message);
         }
@@ -65,5 +62,18 @@ public class AuthController : ControllerBase
         var token = _tokenGenerator.GenerateEmployerToken(result.Value);
         return Ok(token);
     }
+
+    [HttpPost("/Login/User")]
+    public IActionResult LoginUser(){
+        
+        return Ok();
+    }
+
+    [HttpPost("/Login/Employer")]
+    public IActionResult LoginEmployer(){
+
+        return Ok();
+    }
+
 
 }
