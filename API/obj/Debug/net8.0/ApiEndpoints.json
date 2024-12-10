@@ -1,25 +1,5 @@
 [
   {
-    "ContainingType": "JobFinder.API.Controllers.HomeController",
-    "Method": "NeedAuthorize",
-    "RelativePath": "Authorize",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "API.Controllers.AccountController",
     "Method": "EmployerCheck",
     "RelativePath": "EmployerCheck",
@@ -33,26 +13,6 @@
     "ContainingType": "JobFinder.API.Controllers.ErrorsController",
     "Method": "Error",
     "RelativePath": "error",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "JobFinder.API.Controllers.HomeController",
-    "Method": "Home",
-    "RelativePath": "Home/Get",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "JobFinder.API.Controllers.HomeController",
-    "Method": "Login",
-    "RelativePath": "Login",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -86,26 +46,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "JobFinder.API.Controllers.HomeController",
-    "Method": "Register",
-    "RelativePath": "Register",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "JobFinder.API.Controllers.AuthController",
     "Method": "RegisterEmployer",
     "RelativePath": "Register/Employer",
@@ -135,6 +75,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AccountController",
+    "Method": "CreateUserResume",
+    "RelativePath": "Resume/Test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

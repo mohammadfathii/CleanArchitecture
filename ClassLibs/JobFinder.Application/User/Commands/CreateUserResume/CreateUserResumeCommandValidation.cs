@@ -11,7 +11,6 @@ public class CreateUserResumeCommandValidation : AbstractValidator<CreateUserRes
       RuleFor(u => u.Resume.PhoneNumber).NotNull();
       RuleFor(u => u.Resume.Email).NotNull().EmailAddress();
       RuleFor(u => u.Resume.City).NotNull();
-      RuleFor(u => u.Resume.Skills).NotNull();
 
       RuleFor(u => u.User).NotNull();
     }

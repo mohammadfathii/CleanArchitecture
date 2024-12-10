@@ -50,6 +50,16 @@ public sealed class User : AggregateRoot<UserId>
     public UserPermission Permission { get; private set; }
     private readonly List<Resume> _resumes;
     public IReadOnlyList<Resume> Resumes => _resumes.AsReadOnly();
+
+    public void AddResume(Resume resume)
+    {
+        _resumes.Add(resume);
+    }
+    public void RemoveResume(Resume resume)
+    {
+        _resumes.Remove(resume);
+    }
+
 #pragma warning disable CS8618
     private User()
     {

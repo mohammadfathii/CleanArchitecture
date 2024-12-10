@@ -25,27 +25,17 @@ public class UserRepository : IUserRepository
 
     public async Task<User> CreateResume(Resume resume, User user)
     {
-        using (var transaction = await _context.Database.BeginTransactionAsync())
+        // check if there is any other resume that have same email for the same user
+        if (user.Resumes.Any(x => x.Email == resume.Email))
         {
-            // added resume to database
-            await _context.Resumes.AddAsync(resume);
-            await _context.SaveChangesAsync();
-            await transaction.CommitAsync();
-
-            // create a new list of resumes and added the user previous resumes and new resume
-            var resumes = new List<Resume>();
-            resumes.AddRange(user.Resumes);
-            resumes.Add(resume);
-
-            // create a new user and added the list to it
-            var newuser = JobFinder.Domain.UserAggregate.User.Create(user.FullName, user.UserName, user.Email, user.Password, user.PhoneNumber, Domain.UserAggregate.Enums.UserPermission.Admin, resumes);
-            _context.Users.Update(newuser);
-
-            await _context.SaveChangesAsync();
-            await transaction.CommitAsync();
-
-            return newuser;
+            return null;
         }
+        // add the resume into the _resumes field 
+        user.AddResume(resume);
+        // update the database
+        await _context.SaveChangesAsync();
+
+        return user;
     }
 
     public async Task<User> GetUser(string userId)
