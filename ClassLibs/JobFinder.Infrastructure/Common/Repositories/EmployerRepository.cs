@@ -3,6 +3,7 @@ using JobFinder.Domain.EmployerAggregate;
 using JobFinder.Domain.UserAggregate;
 using JobFinder.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace JobFinder.Infrastructure.Common.Repositories
 {
@@ -32,5 +33,10 @@ namespace JobFinder.Infrastructure.Common.Repositories
             return await _dbContext.Employers.AnyAsync(e => e.Email == Email || e.CompanyName == CompanyName);
         }
 
+        public async Task<Employer> Employer(Expression<Func<Employer, bool>> expression)
+        {
+            var employer = await _dbContext.Employers.Include(e => e.Jobs).FirstOrDefaultAsync(expression);
+            return employer;
+        }
     }
 }

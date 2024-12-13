@@ -36,7 +36,7 @@ namespace API.Controllers
         [HttpGet("/Resume/Test")]
         public async Task<IActionResult> CreateUserResume()
         {
-            var user = await _sender.Send(new GetUserQuery("babavoss"));
+            var user = await _sender.Send(new GetUserQuery(u => u.UserName == "babavoss"));
             
             var resume = await _sender.Send(new CreateUserResumeCommand(Resume.Create("testrdad@sasa.dsad","asdaasdassda","asddsadasdas",new List<JobFinder.Domain.SkillAggregate.ValueObjects.SkillId>()),user));
 

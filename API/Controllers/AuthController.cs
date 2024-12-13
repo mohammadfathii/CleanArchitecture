@@ -1,14 +1,14 @@
-using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Employer.Commands.Create;
+using JobFinder.Application.User.Queries.LoginUser;
+using JobFinder.Application.Employer.Queries.Login;
 using JobFinder.Application.User.Commands.Create;
-using Microsoft.AspNetCore.Mvc;
-using MediatR;
+using JobFinder.Application.Common.Interfaces;
 using JobFinder.Application.Common.Errors;
+using Microsoft.AspNetCore.Mvc;
+using MapsterMapper;
 using System.Net;
 using API.Models;
-using MapsterMapper;
-using JobFinder.Application.User.Queries.LoginUser;
-using FluentResults;
+using MediatR;
 
 namespace JobFinder.API.Controllers;
 
@@ -28,13 +28,13 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("/Register/User")]
-    public async Task<IActionResult> RegisterUser(RegisterUserModel request)
+    public async Task<IActionResult> RegisterUser([FromBody] RegisterUserModel request)
     {
         var command = _mapper.Map<CreateUserCommand>(request);
 
         var result = await _sender.Send(command);
 
-        if (result.Errors != null && result.Errors.Count > 0)
+        if (result.IsFailed)
         {
             if (result.Errors[0] is EntityExistsError)
             {
@@ -57,7 +57,7 @@ public class AuthController : ControllerBase
 
         var result = await _sender.Send(command);
 
-        if (result.Errors != null && result.Errors.Count > 0)
+        if (result.IsFailed)
         {
             if (result.Errors[0] is EntityExistsError)
             {
@@ -79,15 +79,15 @@ public class AuthController : ControllerBase
 
         var user = await _sender.Send(query);
 
-        if (user.Errors != null && user.Errors.Count > 0)
+        if (user.IsFailed)
         {
             if (user.Errors[0] is AuthenticationFaieldError)
             {
-                return Problem(statusCode: (int)HttpStatusCode.BadRequest, title: user.Errors[0].Message);
+                return Problem(statusCode: (int)HttpStatusCode.NotFound, title: user.Errors[0].Message);
             }
             else if (user.Errors[0] is ValidationError)
             {
-                return Problem(statusCode: (int)HttpStatusCode.Conflict, title: user.Errors[0].Message);
+                return Problem(statusCode: (int)HttpStatusCode.BadRequest, title: user.Errors[0].Message);
             }
         }
 
@@ -97,9 +97,25 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("/Login/Employer")]
-    public IActionResult LoginEmployer(){
+    public async Task<IActionResult> LoginEmployer([FromBody] LoginEmployerModel request){
+        var query = _mapper.Map<LoginEmployerQuery>(request);
 
-        return Ok();
+        var employer = await _sender.Send(query);
+
+        if (employer.IsFailed)
+        {
+            if (employer.Errors[0] is AuthenticationFaieldError)
+            {
+                return Problem(statusCode:(int)HttpStatusCode.NotFound,title : employer.Errors[0].Message);
+            }else if (employer.Errors[0] is ValidationError)
+            {
+                return Problem(statusCode: (int)HttpStatusCode.BadRequest, title: employer.Errors[0].Message);
+            }
+        }
+
+        var token = _tokenGenerator.GenerateEmployerToken(employer.Value);
+
+        return Ok(token);
     }
 
 
