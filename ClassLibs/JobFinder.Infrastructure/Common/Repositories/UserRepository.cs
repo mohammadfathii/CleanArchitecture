@@ -2,8 +2,10 @@ namespace JobFinder.Infrastructure.Common.Repositories;
 
 using System;
 using System.Linq.Expressions;
+using Azure.Core;
 using JobFinder.Application.Common.Repositories;
 using JobFinder.Domain.ResumeAggregate;
+using JobFinder.Domain.SkillAggregate.ValueObjects;
 using JobFinder.Domain.UserAggregate;
 using JobFinder.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +31,10 @@ public class UserRepository : IUserRepository
         if (user.Resumes.Any(x => x.Email == resume.Email))
         {
             return null;
+        }
+        if (resume.Skills == null)
+        {
+            resume = Resume.Create(resume.Email,resume.PhoneNumber,resume.City,new List<SkillId>());
         }
         // add the resume into the _resumes field 
         user.AddResume(resume);

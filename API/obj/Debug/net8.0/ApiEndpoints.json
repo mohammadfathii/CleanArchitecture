@@ -104,6 +104,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "API.Controllers.UserController",
+    "Method": "CreateResume",
+    "RelativePath": "User/Resume",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resume",
+        "Type": "API.Models.Resume.CreateResumeModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.AccountController",
     "Method": "UserCheck",
     "RelativePath": "UserCheck",
