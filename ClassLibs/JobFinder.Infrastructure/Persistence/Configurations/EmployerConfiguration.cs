@@ -52,5 +52,6 @@ public class EmployerConfiguration : IEntityTypeConfiguration<Employer>
     });
 
     builder.Metadata.FindNavigation(nameof(Employer.Jobs))!.SetPropertyAccessMode(PropertyAccessMode.Field);
+
   }
 }

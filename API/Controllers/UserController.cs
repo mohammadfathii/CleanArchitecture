@@ -43,7 +43,7 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/User/Resume")]
+        [HttpPost("/User/Resume")]
         public async Task<IActionResult> CreateResume([FromBody] CreateResumeModel resume)
         {
             var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
@@ -61,10 +61,6 @@ namespace API.Controllers
                 if (result.Errors[0] is ValidationError)
                 {
                     return Problem(statusCode: 409, title: result.Errors[0].Message);
-                }
-                else
-                {
-                    return Problem(statusCode: 500, title: result.Errors[0].Message);
                 }
             }
 

@@ -4,6 +4,7 @@ using JobFinder.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobFinder.Infrastructure.Migrations
 {
     [DbContext(typeof(JobFinderDbContext))]
-    partial class JobFinderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241219124804_AddedExpireTimePorpertyToJob")]
+    partial class AddedExpireTimePorpertyToJob
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,7 @@ namespace JobFinder.Infrastructure.Migrations
                             b1.Property<Guid>("EmployerId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<int>("EmployementTimeType")
+                            b1.Property<int>("EmployementType")
                                 .HasColumnType("int");
 
                             b1.Property<DateTime>("ExpireTime")

@@ -9,7 +9,6 @@ namespace API.Models.Resume
         public string Email { get; set; }
         public string City { get; set; }
         public string PhoneNumber { get; set; }
-        [MaybeNull]
         [AllowNull]
         public List<SkillId> SkillIds { get; set; }
     }

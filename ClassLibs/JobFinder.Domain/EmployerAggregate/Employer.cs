@@ -44,15 +44,19 @@ public sealed class Employer : AggregateRoot<EmployerId>
         Password,
         Jobs);
   }
+  public void AddJob(Job Job)
+  {
+        this._jobs.Add(Job);
+  }
 
   public string CompanyName { get; private set; }
   public string Email { get; private set; }
   public string PhoneNumber { get; private set; }
   public string Address { get; private set; }
   public string Description { get; private set; }
-    public string Password { get; private set; }
+  public string Password { get; private set; }
 
-    private readonly List<Job> _jobs = new();
+  private readonly List<Job> _jobs = new();
   public IReadOnlyList<Job> Jobs => _jobs.AsReadOnly();
 #pragma warning disable CS8618
   private Employer()
